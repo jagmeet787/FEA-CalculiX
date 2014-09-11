@@ -1,0 +1,55 @@
+*HEADING
+Model: beam Date: 10−Mar−1998 (From CalculiX manual)
+*NODE
+1, 0.000000, 0.000000, 0.000000
+2, 1.000000, 0.000000, 0.000000
+3, 1.000000, 1.000000, 0.000000
+.
+.
+.
+260, 0.500000, 0.750000, 7.000000
+261, 0.500000, 0.500000, 7.500000
+*ELEMENT, TYPE=C3D20R , ELSET=Eall
+ 1,   1,   10,    95,    19,   61,  105,  222,  192,    9,  93,
+     94,   20,   104,   220,  221,  193,   62,  103,  219,  190,
+ 2,  10,    2,    13,    95,  105,   34,  134,  222,   11,   12,
+     96,   93,   106,   133,  223,  220,  103,   33,  132,  219
+ .
+ .
+ .
+ .
+32, 258,  158,    76,   187,  100,   25,    7,   28,  259,  159,
+
+    186,  260,   101,    26,   27,  102,  261,  160,   77,  189
+
+*NSET, NSET=FIX
+97,	 96,  95,  94,  93,
+14,  13,  12,  11,  10,
+*BOUNDARY
+FIX, 1
+*BOUNDARY
+FIX, 2
+*BOUNDARY
+FIX, 3
+*NSET,NSET=Nall,GENERATE
+1,261
+*MATERIAL,NAME=EL
+*ELASTIC
+ 210000.0, .3
+*SOLID SECTION,ELSET=Eall,MATERIAL=EL
+*NSET,NSET=LOAD
+5,6,7,8,22,25,28,31,100
+**
+*STEP
+*STATIC
+*CLOAD
+LOAD,2,1.
+*NODE PRINT,NSET=Nall
+U
+*EL PRINT,ELSET=Eall
+S
+*NODE FILE
+U
+*EL FILE
+S
+*END STEP
